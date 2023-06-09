@@ -53,7 +53,7 @@ label start:
 
     "*Arthur agacha la cabeza un poco avergonzado y piensa para sí mismo...*"
 
-    a " Pero... realmente quiero ser rey?"
+    a " Pero... ¿realmente quiero ser rey?"
     a "La responsabilidad es tan grande..."
     a "Las personas del reino"
     a "La Orden"
@@ -70,7 +70,7 @@ label start:
         "No. No quiero ser rey":
             jump huida
 
-    a: "Sin embargo... ¿Qué tipo de rey quiero ser?"
+    a "Sin embargo... ¿Qué tipo de rey quiero ser?"
     menu:
         "Un rey que se concentre en proteger a sus seres queridos":
             #Dedicacion++
@@ -102,13 +102,14 @@ label start:
             m "La gente levanta la cabeza cuando te ve, tienes un aura digna de un rey e igualmente queremos seguir llevando a cabo nuestro plan. Sin embatgo, quería ser honesto igualmente sobre la naturaleza de la profecía."
             "Arthur piensa para si mismo..."
             menu:
-                "*Merlin... no estoy enojado. Simplemente decepcionado. ¿Por qué ahora?¿Por qué no antes? De todas formas ya esta. Quiero seguir por este camino":
-                #Dedicacion++
-                jump good_ending
+                "*Merlin... no estoy enojado. Simplemente decepcionado. De todas formas ya esta. Quiero seguir por este camino*":
+                    jump good_ending
+                    #Dedicacion++
+
 
                 "*Pero qué carajos me está diciendo el viejo... maldito traicionero*":
-                #Dedicacion--
-                jump angry
+                    jump angry
+                    #Dedicacion--
         
         "Que importa eso, yo solo quiero entrenar y hacerme fuerte":
             #Dedicacion--

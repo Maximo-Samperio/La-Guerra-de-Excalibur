@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 73: expected statement.
-    a: "Sin embargo... ¿Qué tipo de rey quiero ser?"
-     ^
-
 File "game/script.rpy", line 105: choice menuitem expects a non-empty block.
-    "*Merlin... no estoy enojado. Simplemente decepcionado. ¿Por qué ahora?¿Por qué no antes? De todas formas ya esta. Quiero seguir por este camino":
-                                                                                                                                                      ^
+    "*Merlin... no estoy enojado. Simplemente decepcionado. ¿Por qué ahora?¿Por qué no antes? De todas formas ya esta. Quiero seguir por este camino*":
+                                                                                                                                                       ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Fri Jun  9 12:39:32 2023
+Fri Jun  9 12:44:53 2023
