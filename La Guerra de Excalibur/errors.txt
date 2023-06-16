@@ -2,8 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 39: invalid syntax
-    dedicacion+
+File "game/script.rpy", line 86: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "Eso se debe a que es misericordioso"
+                                         ^
 
 Ren'Py Version: Ren'Py 8.1.1.23060707
-Fri Jun 16 14:59:06 2023
+Fri Jun 16 15:33:47 2023

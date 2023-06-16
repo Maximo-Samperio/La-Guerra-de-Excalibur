@@ -33,11 +33,11 @@ label start:
     
     
     # Si quiero que arriba de eso aparezca quien lo dice (estilo coment.), se pone el char con el que se declara el pj y el texto entre ""
-    m "Arthur, ¿qué te parece si realizas una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
+    m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
     menu:
         "*Aceptar la sesión extra*":
             $ dedicacion += 1
-            #a "dedicacion [dedicacion]."
+            #a "dedicacion actual es total a: [dedicacion]."
             a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
             m "¡Buena decisión!"
             "*Un rato después*"
@@ -67,7 +67,7 @@ label start:
     menu:
         "Si. Quiero ser rey.":
             a "Sí, tengo que ser rey. La gente me necesita y ahí estaré para protegerlos"
-            $ dedicacion +=1
+            $ dedicacion += 1
 
         "No. No quiero ser rey":
             jump huida
@@ -75,20 +75,27 @@ label start:
     a "Sin embargo... ¿Qué tipo de rey quiero ser?"
     menu:
         "Un rey que se concentre en proteger a sus seres queridos":
-            $ dedicacion +=1
+            $ dedicacion += 1
             a "Seré un rey bondadoso, que se esforzara por proteger aquello más preciado para uno... su gente. Un rey no es nada sin un reino que gobernar. Tengo que continuar mi entrenamiento, ese es el camino que Merlín también elegiría para mi"
         
         "Un rey que se concentre en destruir a sus enemigos":
             $ dedicacion -= 1
             a "Si... La Orden debe ser aniquilada. He visto lo que hacen. Asesinan hombres, mujeres y niños por igual. Queman aldeas, encerrando a los habitantes dentro de sus casas para oír sus gritos mientras se queman vivos. Son unos monstruos y serán tratados acorde. Merlín me ha advertido sobre estos pensamientos oscuros, pero es la cruda realidad."
-    
+            a "Se que Merlin no piensa igual."
+            menu:
+                "Eso se debe a que es misericordioso":
+                    $ dedicacion += 1
+                    
+                "Eso se debe a que es un cobarde":
+                    $ dedicacion -= 1
+                    
     "A la madrugada del día siguiente, Arthur se levanta con renovadas energías y voluntad para entrenar. "
     "Al levantarse y encontrarlo ya entrenando, Merlín felicita su perseverancia."
 
     m "Arthur, la perseverancia es una de las cualidades de un líder. Me gustaría que hablemos un rato sobre eso, ¿qué te parece?"
     menu:
         "Reflexionar sobre las cualidades de un lider, asi seré mejor rey":
-            $ dedicacion +=1
+            $ dedicacion += 1
             a "Claro, Merlín. Cuéntame sobre las cualidades de un líder"
             m "Bien. Algunas de las cualidades distintivas de los lideres son: la proactividad, la habilidad para coordinar con otras personas, saber elegir prioridades, ser una persona integra y moral, entre otras."
             m "¿Y sabes que es lo sorprendente Arthur? Tu las posees todas y cada una de ellas."
@@ -103,58 +110,70 @@ label start:
             m "Eres una persona con dones inconmensurables."
             m "La gente levanta la cabeza cuando te ve, tienes un aura digna de un rey e igualmente queremos seguir llevando a cabo nuestro plan. Sin embatgo, quería ser honesto igualmente sobre la naturaleza de la profecía."
             "Arthur piensa para si mismo..."
-            menu:
-                "*Merlin... no estoy enojado. Simplemente decepcionado. De todas formas ya esta. Quiero seguir por este camino*":
-                    jump good_ending
-                    $ dedicacion +=1
-
-
-                "*Pero qué carajos me está diciendo el viejo... maldito traicionero*":
-                    jump angry
-                    $ dedicacion -= 1
+            if dedicacion <= -1:
+                menu:
+                    "*Pero qué carajos me está diciendo el viejo... maldito traicionero*":
+                        jump angry
+                        $ dedicacion -= 1
+                
+            else:
+                menu:
+                    "*Merlin... no estoy enojado. Simplemente decepcionado. De todas formas, quiero seguir por este camino*":
+                        jump good_ending
+                        $ dedicacion += 1
+                        
+                    "*Pero qué carajos me está diciendo el viejo... maldito traicionero*":
+                        jump angry
+                        $ dedicacion -= 1
+                        
         
         "Que importa eso, yo solo quiero entrenar y hacerme fuerte":
             $ dedicacion -= 1
             "Dada la aparente falta de interes de Arthur, Merlin decide dejarlo entrenando solo."
             "Un par de horas mas tarde, cuando el joven regresa a la cabaña, este logra escuchar a Merlin hablando por su bola de cristal, y oye algo que no debio de haber escuchado..."
-            m "El no es el elegido del cual hablaba la profecía"
+            m "'El no es el elegido del cual hablaba la profecía'"
             "Arthur se detiene subitamente, en shock"
-            if dedicacion >= 2:
-                menu:
-                    "Enfrentar a Merlin y discutir con el":
-                        jump angry
 
-            elif dedicacion <= -1:
+            # Esta ausencia de eleccion solo sucede si el jugador eligio todas y cada una de las elecciones deshonorables, es decir, es irredimible
+            if dedicacion <= -2:
                 menu:
                     "Abandonar a Merlin y escapar del reino":
                         jump huida
 
+            # Si el jugador es honorable, tiene poder de eleccion
+            else:
+                menu:
+                    "Enfrentar a Merlin y discutir con el":
+                        jump angry
 
-
-
+                    "Abandonar a Merlin y escapar del reino":
+                        jump huida
     #End
     return
-
-
-
-label abandonar_merlin:
-    menu:
-        "Abandonar a Merlin y escapar del reino":
-            jump huida
 
 label angry:
     "Arthur estalla de furia contra Merlin ante este hecho"
     a "¡Merlín! De todas las personas en el mundo... jamás pensé que ibas a ser tú, la misma persona que me rescato quien me iba a mentir de esta forma... Me siento traicionado."
     m "Perdón Arthur. Mis más sinceras disculpas. Pero... una cosa no quita la otra. No necesitas ninguna profecía antigua para convertirte en el rey y salvador de estas tierras ¡Ya eres un líder y te estás convirtiendo en el salvador! Que importa lo que una profecía diga."
-    menu:
-        "Entrar en razón, relajarse y darle una oportunidad":
-            jump good_ending
-        
-        "Explotar de rabia e intentar asesinar a Merlín":
-            jump bad_ending
+   
+    if dedicacion <= -1:
+        menu:
+            "Explotar de rabia e intentar asesinar a Merlín":
+                jump bad_ending
 
-        "Dejarlo atrás, ya no te interesa ser ni el rey salvador ni un villano. Alejarte. Escapar":
-            jump huida
+            "Dejarlo atrás, ya no te interesa ser ni el rey salvador ni un villano. Alejarte. Escapar":
+                jump huida
+
+    else:
+        menu:
+            "Entrar en razón, relajarse y darle una oportunidad":
+                jump good_ending
+            
+            "Explotar de rabia e intentar asesinar a Merlín":
+                jump bad_ending
+
+            "Dejarlo atrás, ya no te interesa ser ni el rey salvador ni un villano. Alejarte. Escapar":
+                jump huida
 
 
 #End

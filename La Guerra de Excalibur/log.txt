@@ -1,22 +1,22 @@
-Fri Jun 16 15:11:02 2023
+Fri Jun 16 15:50:19 2023
 Windows-10-10.0.22621
 Ren'Py 8.1.1.23060707
  
 
 Bootstrap to the start of init.init. took 0.03s
 Early init. took 0.00s
-Loader init. took 0.02s
+Loader init. took 0.03s
 Loading error handling. took 0.03s
-Loading script. took 0.16s
+Loading script. took 0.17s
 Loading save slot metadata. took 0.03s
 Loading persistent. took 0.00s
 Running init code. took 0.04s
 Loading analysis data. took 0.01s
-Analyze and compile ATL. took 0.00s
+Analyze and compile ATL. took 0.01s
 Reloading save slot metadata. took 0.02s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\maxim\\AppData\\Roaming/RenPy/backups\\La Guerra de Excalibur':
-Dump and make backups. took 0.06s
+Dump and make backups. took 0.05s
 Cleaning cache. took 0.00s
 Making clean stores. took 0.00s
 Initial gc. took 0.02s
