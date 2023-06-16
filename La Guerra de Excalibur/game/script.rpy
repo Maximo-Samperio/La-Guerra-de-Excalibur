@@ -36,7 +36,8 @@ label start:
     m "Arthur, ¿qué te parece si realizas una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
     menu:
         "*Aceptar la sesión extra*":
-            #dedicacion++
+            $ dedicacion += 1
+            #a "dedicacion [dedicacion]."
             a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
             m "¡Buena decisión!"
             "*Un rato después*"
@@ -46,7 +47,7 @@ label start:
             m "Por no hablar de toda la gente que cree en ti, Arthur. No hablo solo de La Mesa Redonda, sino de todo el pueblo. Todos cuentan contigo."
 
         "*Negarse a la sesion extra":
-            #dedicacion--
+            $ dedicacion -= 1
             a "Eh, la verdad que no tengo muchas ganas, ya estuve entrenando un poco hoy y prefiero descansar ahora"
             m "Que... decepcionante de tu parte, Arthur. Esperaba más dedicación de tu parte a la causa, más aun sabiendo a lo que nos enfrentamos."
             m "La Orden está arrasando con todo a su paso y la gente cree en ti, Arthur. Sus esperanzas están depositadas en ti."
@@ -66,6 +67,7 @@ label start:
     menu:
         "Si. Quiero ser rey.":
             a "Sí, tengo que ser rey. La gente me necesita y ahí estaré para protegerlos"
+            $ dedicacion +=1
 
         "No. No quiero ser rey":
             jump huida
@@ -73,11 +75,11 @@ label start:
     a "Sin embargo... ¿Qué tipo de rey quiero ser?"
     menu:
         "Un rey que se concentre en proteger a sus seres queridos":
-            #Dedicacion++
+            $ dedicacion +=1
             a "Seré un rey bondadoso, que se esforzara por proteger aquello más preciado para uno... su gente. Un rey no es nada sin un reino que gobernar. Tengo que continuar mi entrenamiento, ese es el camino que Merlín también elegiría para mi"
         
         "Un rey que se concentre en destruir a sus enemigos":
-            #Dedicacion--
+            $ dedicacion -= 1
             a "Si... La Orden debe ser aniquilada. He visto lo que hacen. Asesinan hombres, mujeres y niños por igual. Queman aldeas, encerrando a los habitantes dentro de sus casas para oír sus gritos mientras se queman vivos. Son unos monstruos y serán tratados acorde. Merlín me ha advertido sobre estos pensamientos oscuros, pero es la cruda realidad."
     
     "A la madrugada del día siguiente, Arthur se levanta con renovadas energías y voluntad para entrenar. "
@@ -86,7 +88,7 @@ label start:
     m "Arthur, la perseverancia es una de las cualidades de un líder. Me gustaría que hablemos un rato sobre eso, ¿qué te parece?"
     menu:
         "Reflexionar sobre las cualidades de un lider, asi seré mejor rey":
-            #Dedicacion++
+            $ dedicacion +=1
             a "Claro, Merlín. Cuéntame sobre las cualidades de un líder"
             m "Bien. Algunas de las cualidades distintivas de los lideres son: la proactividad, la habilidad para coordinar con otras personas, saber elegir prioridades, ser una persona integra y moral, entre otras."
             m "¿Y sabes que es lo sorprendente Arthur? Tu las posees todas y cada una de ellas."
@@ -104,25 +106,28 @@ label start:
             menu:
                 "*Merlin... no estoy enojado. Simplemente decepcionado. De todas formas ya esta. Quiero seguir por este camino*":
                     jump good_ending
-                    #Dedicacion++
+                    $ dedicacion +=1
 
 
                 "*Pero qué carajos me está diciendo el viejo... maldito traicionero*":
                     jump angry
-                    #Dedicacion--
+                    $ dedicacion -= 1
         
         "Que importa eso, yo solo quiero entrenar y hacerme fuerte":
-            #Dedicacion--
+            $ dedicacion -= 1
             "Dada la aparente falta de interes de Arthur, Merlin decide dejarlo entrenando solo."
             "Un par de horas mas tarde, cuando el joven regresa a la cabaña, este logra escuchar a Merlin hablando por su bola de cristal, y oye algo que no debio de haber escuchado..."
             m "El no es el elegido del cual hablaba la profecía"
             "Arthur se detiene subitamente, en shock"
-            menu:
-                "Enfrentar a Merlin y discutir con el":
-                    jump angry
-                
-                "Abandonar a Merlin y escapar del reino":
-                    jump huida
+            if dedicacion >= 2:
+                menu:
+                    "Enfrentar a Merlin y discutir con el":
+                        jump angry
+
+            elif dedicacion <= -1:
+                menu:
+                    "Abandonar a Merlin y escapar del reino":
+                        jump huida
 
 
 
@@ -131,6 +136,11 @@ label start:
     return
 
 
+
+label abandonar_merlin:
+    menu:
+        "Abandonar a Merlin y escapar del reino":
+            jump huida
 
 label angry:
     "Arthur estalla de furia contra Merlin ante este hecho"

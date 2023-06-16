@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 105: choice menuitem expects a non-empty block.
-    "*Merlin... no estoy enojado. Simplemente decepcionado. ¿Por qué ahora?¿Por qué no antes? De todas formas ya esta. Quiero seguir por este camino*":
-                                                                                                                                                       ^
+File "game/script.rpy", line 39: invalid syntax
+    dedicacion+
 
-Ren'Py Version: Ren'Py 8.0.3.22090809
-Fri Jun  9 12:44:53 2023
+Ren'Py Version: Ren'Py 8.1.1.23060707
+Fri Jun 16 14:59:06 2023
