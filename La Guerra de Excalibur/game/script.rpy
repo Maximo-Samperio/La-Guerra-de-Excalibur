@@ -1,20 +1,38 @@
-﻿
+﻿# ↓ Fade in y fade out de la barra de decisiones
+transform alpha_dissolve:
+    alpha 0.0
+    linear 0.5 alpha 1.0
+    on hide:
+        linear 0.5 alpha 0.0
+    
+
 init:
     # Definicion de personajes
     $ a = Character ("Arthur", color="#ffee00ff")
     $ m = Character ("Merlin", color="#085bc7ff")
 
     # Definicion de imagenes
+    image merlin = im.Scale("Merlin.png", 1920, 1080)
+    image arthur = im.Scale("Arthur.png", 1920, 1080)
+
     # image imageName = "imageFileName.jpg"
 
+    #Definicion de variables 
+    default dedicacion = 0      # Sistema de honor
 
+    $ time = 0                  # Tiempo a contar
+    $ timer_range = 0           # Tiempo a contar pero para la barra de animacion
+    $ timer_jump = 0            # lugar al que saltar si se acaba el tiempo
+
+screen countdown:
+    # ↓ Dismuinuye la var time por 0.01 hasta llegar a 0, en cuyo punto, el juego salta a la label timer_jump
+    timer 0.001 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Hide('countdown'), Jump(timer_jump)])
+
+    # ↓ La barra del timer en la UI
+    bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve
 
 
 label start:
-
-    #Lista de variables
-    default dedicacion = 0
-
     # Para mostrar una imagen
     # show imageName
 
@@ -31,26 +49,45 @@ label start:
 
     "Arthur estaba entrenando con Merlín, su mentor y quien lo ha rescatado de las garras de 'La Orden', una organización temeraria que guerrea sobre el reino de Arthur y retuvo a este cautivo durante años con la promesa de que él sea 'El Elegido'"
     
-    
-    # Si quiero que arriba de eso aparezca quien lo dice (estilo coment.), se pone el char con el que se declara el pj y el texto entre ""
-    m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
-    menu:
-        "*Aceptar la sesión extra*":
-            $ dedicacion += 1
-            #a "dedicacion actual es total a: [dedicacion]."
-            a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
-            m "¡Buena decisión!"
-            "*Un rato después*"
-            m "¡Buen trabajo Arthur! Estoy orgulloso de ti. Es increíble todo lo que has avanzado en los meses que hemos estado juntos. No dejas de sorprenderme."
-            a "Gracias Merlín, estoy dando lo mejor de mí y es bueno ver que eso da frutos."
-            m "Pues claro que da frutos. Y me parece muy bien que des lo mejor de ti. Eso es lo que se espera de alguien que se convertirá en el guía de este reino. Serás un gran líder si te mantienes en este camino."
-            m "Por no hablar de toda la gente que cree en ti, Arthur. No hablo solo de La Mesa Redonda, sino de todo el pueblo. Todos cuentan contigo."
+    #Para mostrar fondos se usa:
+    # scene imagename
 
-        "*Negarse a la sesion extra":
-            $ dedicacion -= 1
-            a "Eh, la verdad que no tengo muchas ganas, ya estuve entrenando un poco hoy y prefiero descansar ahora"
-            m "Que... decepcionante de tu parte, Arthur. Esperaba más dedicación de tu parte a la causa, más aun sabiendo a lo que nos enfrentamos."
-            m "La Orden está arrasando con todo a su paso y la gente cree en ti, Arthur. Sus esperanzas están depositadas en ti."
+    # Para mostrar personajes se usa
+    # show imageName
+    show merlin
+
+    m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
+
+    label trainingChoiceLoop:
+        $ time = 6                          # Seteo de la variable de tiempo
+        $ timer_range = 6                   # Setear el rango de la barra
+        $ timer_jump = 'training_slow'      # Setear a donde saltar en fallo
+        show screen countdown
+        menu:
+            "*Aceptar la sesión extra*":
+                hide screen countdown       # Detiene el timer
+                hide merlin
+                $ dedicacion += 1
+                #a "dedicacion actual es total a: [dedicacion]."
+
+                show arthur
+                a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
+                m "¡Buena decisión!"
+                "*Un rato después*"
+                m "¡Buen trabajo Arthur! Estoy orgulloso de ti. Es increíble todo lo que has avanzado en los meses que hemos estado juntos. No dejas de sorprenderme."
+                a "Gracias Merlín, estoy dando lo mejor de mí y es bueno ver que eso da frutos."
+                m "Pues claro que da frutos. Y me parece muy bien que des lo mejor de ti. Eso es lo que se espera de alguien que se convertirá en el guía de este reino. Serás un gran líder si te mantienes en este camino."
+                m "Por no hablar de toda la gente que cree en ti, Arthur. No hablo solo de La Mesa Redonda, sino de todo el pueblo. Todos cuentan contigo."
+
+            "*Negarse a la sesion extra":
+                $ dedicacion -= 1
+                hide merlin
+                hide screen countdown       # Detiene el timer
+                
+                show arthur
+                a "Eh, la verdad que no tengo muchas ganas, ya estuve entrenando un poco hoy y prefiero descansar ahora"
+                m "Que... decepcionante de tu parte, Arthur. Esperaba más dedicación de tu parte a la causa, más aun sabiendo a lo que nos enfrentamos."
+                m "La Orden está arrasando con todo a su paso y la gente cree en ti, Arthur. Sus esperanzas están depositadas en ti."
 
     "*Arthur agacha la cabeza un poco avergonzado y piensa para sí mismo...*"
 
@@ -150,6 +187,20 @@ label start:
                         jump huida
     #End
     return
+
+label training_slow:
+    m "¿Arthur? ¿Estas ahi?"
+    hide merlin
+    show arthur
+    a "Lo- Lo siento Merlin, ¿Que dijiste?"
+    hide arthur
+    show merlin
+    "*Merlin suspira de cansancio*"
+    m "Te pregunte si te gustaria realizar una sesión extra de entrenamiento, ya que te vendría bien reforzar tu técnica con la espada."
+    jump trainingChoiceLoop
+
+
+
 
 label angry:
     "Arthur estalla de furia contra Merlin ante este hecho"
