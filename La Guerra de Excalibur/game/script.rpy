@@ -11,9 +11,34 @@ init:
     $ a = Character ("Arthur", color="#ffee00ff")
     $ m = Character ("Merlin", color="#085bc7ff")
 
-    # Definicion de imagenes
+    # Definicion de imagenes de personajes
     image merlin = im.Scale("Merlin.png", 1920, 1080)
     image arthur = im.Scale("Arthur.png", 1920, 1080)
+
+    # Planos de Merlin
+    image merlinEnojado = im.Scale("MerlinEnojado.png", 300, 640)
+    image merlinEmocionado = im.Scale("MerlinEmocionado.png", 300, 640)
+
+
+    #Planos de Arthur
+    image arthurDistraido = im.Scale("ArthurDistraido.png", 300, 640)
+    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 300, 640)
+
+    # Definicion de imagenes de fondos
+    image bolaDeCristal = im.Scale("BolaCristal.jpg", 1920, 1080)
+    image camelot = im.Scale("Camelot.jpeg", 1920, 1080)
+    image casaDia = im.Scale("CasaDia.jpeg", 1920, 1080)
+    image casaNoche = im.Scale("CasaNoche.jpeg", 1920, 1080)
+    image cuarto = im.Scale("Cuarto.jpg", 1920, 1080)
+    image desierto = im.Scale("Desierto.jpeg", 1920, 1080)
+    image ejercito = im.Scale("Ejercito.jpeg", 1920, 1080)
+    image genteCaminando = im.Scale("GenteCaminando.jpeg", 1920, 1080)
+    image lunaRoja = im.Scale("LunaRoja.jpeg", 1920, 1080)
+    image tumba = im.Scale("Tumba.jpg", 1920, 1080)
+    image ninojugando = im.Scale("NiñoJugando.jpeg", 1920, 1080)
+
+    
+
 
     # image imageName = "imageFileName.jpg"
 
@@ -39,24 +64,23 @@ label start:
     # Para dejar de mostrar una imagen
     # hide imageName
 
-    # Si quiero solo texto (estilo narracion), se pone el texto pelado entre ""
+    show lunaRoja
+    "La isla de Avalon (la isla de las hadas)"
     "El elegido que fue prometido, nacido bajo la luna roja, despertara."
-    "El elegido que fue prometido, nacido bajo la luna roja, despertara.\nConcebido por el poder de la magia y hijo de un rey, él será..."
-    "El elegido que fue prometido, nacido bajo la luna roja, despertara.\nConcebido por el poder de la magia y hijo de un rey, él será...\nCuando el equilibrio se tambalee, el pasado y el futuro deberán fluir y combinarse"
-    "El elegido que fue prometido, nacido bajo la luna roja, despertara.\nConcebido por el poder de la magia y hijo de un rey, él será...\nCuando el equilibrio se tambalee, el pasado y el futuro deberán fluir y combinarse.\nUn elegido surgirá, cuando le ponga fin a Excalibur, y a través de él, el equilibrio final de las energías se restablecerá"
+    "Concebido por el poder de la magia e hijo de un rey, él será..."
+    "Cuando el equilibrio se tambalee, el pasado y el futuro deberán fluir y combinarse."
+    "Un elegido surgirá, cuando le ponga fin a Excalibur, y a través de él, el equilibrio final de las energías se restablecerá"
+    hide lunaRoja
 
+    show camelot
     "La Guerra de Excalibur"
-
-    "Arthur estaba entrenando con Merlín, su mentor y quien lo ha rescatado de las garras de 'La Orden', una organización temeraria que guerrea sobre el reino de Arthur y retuvo a este cautivo durante años con la promesa de que él sea 'El Elegido'"
+    hide camelot
     
-    #Para mostrar fondos se usa:
-    # scene imagename
-
-    # Para mostrar personajes se usa
-    # show imageName
-    show merlin
-
+    show casaDia
+    #show merlinEnojado
+    #show arthurDistraido
     m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
+
 
     label trainingChoiceLoop:
         $ time = 6                          # Seteo de la variable de tiempo
@@ -66,13 +90,16 @@ label start:
         menu:
             "*Aceptar la sesión extra*":
                 hide screen countdown       # Detiene el timer
-                hide merlin
                 $ dedicacion += 1
                 #a "dedicacion actual es total a: [dedicacion]."
 
-                show arthur
+                #show arthurEmocionado
                 a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
+                #hide arthurEmocionado
+                #show merlinEmocionado
                 m "¡Buena decisión!"
+                hide casaDia
+                show casaNoche
                 "*Un rato después*"
                 m "¡Buen trabajo Arthur! Estoy orgulloso de ti. Es increíble todo lo que has avanzado en los meses que hemos estado juntos. No dejas de sorprenderme."
                 a "Gracias Merlín, estoy dando lo mejor de mí y es bueno ver que eso da frutos."
@@ -81,7 +108,6 @@ label start:
 
             "*Negarse a la sesion extra":
                 $ dedicacion -= 1
-                hide merlin
                 hide screen countdown       # Detiene el timer
                 
                 show arthur
@@ -190,11 +216,9 @@ label start:
 
 label training_slow:
     m "¿Arthur? ¿Estas ahi?"
-    hide merlin
-    show arthur
+    show arthurDistraido
     a "Lo- Lo siento Merlin, ¿Que dijiste?"
-    hide arthur
-    show merlin
+    show merlinEnojado
     "*Merlin suspira de cansancio*"
     m "Te pregunte si te gustaria realizar una sesión extra de entrenamiento, ya que te vendría bien reforzar tu técnica con la espada."
     jump trainingChoiceLoop

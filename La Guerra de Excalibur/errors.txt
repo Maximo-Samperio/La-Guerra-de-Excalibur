@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 86: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
-    "Eso se debe a que es misericordioso"
-                                         ^
+File "game/script.rpy", line 19: end of line expected.
+    scene bolaDeCristal = im.Scale("BolaCristal.jpg", 1920, 1080)
+                        ^
 
-Ren'Py Version: Ren'Py 8.1.1.23060707
-Fri Jun 16 15:33:47 2023
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Sun Jul  2 15:48:10 2023
