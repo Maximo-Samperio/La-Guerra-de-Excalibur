@@ -11,18 +11,17 @@ init:
     $ a = Character ("Arthur", color="#ffee00ff")
     $ m = Character ("Merlin", color="#085bc7ff")
 
-    # Definicion de imagenes de personajes
-    image merlin = im.Scale("Merlin.png", 1920, 1080)
-    image arthur = im.Scale("Arthur.png", 1920, 1080)
-
     # Planos de Merlin
-    image merlinEnojado = im.Scale("MerlinEnojado.png", 300, 640)
-    image merlinEmocionado = im.Scale("MerlinEmocionado.png", 300, 640)
+    image merlinFeliz = im.Scale("MerlinFeliz.png", 1920, 1080)
+    image merlinEnojado = im.Scale("MerlinEnojado.png", 1920, 1080)
+    image merlinPensativo = im.Scale("MerlinPensativo.png", 1920, 1080)
+    image merlinPreocupado = im.Scale("MerlinPreocupado.png", 1920, 1080)
+    image merlinSorprendido = im.Scale("MerlinSorprendido.png", 1920, 1080)
 
 
     #Planos de Arthur
-    image arthurDistraido = im.Scale("ArthurDistraido.png", 300, 640)
-    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 300, 640)
+    image arthurDistraido = im.Scale("ArthurDistraido.png", 1920, 1080)
+    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 1920, 1080)
 
     # Definicion de imagenes de fondos
     image bolaDeCristal = im.Scale("BolaCristal.jpg", 1920, 1080)
@@ -76,7 +75,7 @@ label start:
     "La Guerra de Excalibur"
     hide camelot
     
-    show casaDia
+    show CasaDia
     #show merlinEnojado
     #show arthurDistraido
     m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
@@ -96,7 +95,7 @@ label start:
                 #show arthurEmocionado
                 a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
                 #hide arthurEmocionado
-                #show merlinEmocionado
+                #show merlinFeliz
                 m "¡Buena decisión!"
                 hide casaDia
                 show casaNoche
