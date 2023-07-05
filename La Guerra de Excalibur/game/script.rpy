@@ -12,16 +12,23 @@ init:
     $ m = Character ("Merlin", color="#085bc7ff")
 
     # Planos de Merlin
-    image merlinFeliz = im.Scale("MerlinFeliz.png", 1920, 1080)
-    image merlinEnojado = im.Scale("MerlinEnojado.png", 1920, 1080)
-    image merlinPensativo = im.Scale("MerlinPensativo.png", 1920, 1080)
-    image merlinPreocupado = im.Scale("MerlinPreocupado.png", 1920, 1080)
-    image merlinSorprendido = im.Scale("MerlinSorprendido.png", 1920, 1080)
+    image merlinFeliz = im.Scale("MerlinFeliz.png", 1280, 720)
+    image merlinEnojado = im.Scale("MerlinEnojado.png", 1280, 720)
+    image merlinPensativo = im.Scale("MerlinPensativo.png", 1280, 720)
+    image merlinPreocupado = im.Scale("MerlinPreocupado.png", 1280, 720)
+    image merlinSorprendido = im.Scale("MerlinSorprendido.png", 1280, 720)
 
 
     #Planos de Arthur
-    image arthurDistraido = im.Scale("ArthurDistraido.png", 1920, 1080)
-    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 1920, 1080)
+    image arthurLlorando = im.Scale("ArthurLlorando.png", 1280, 720)
+    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 1280, 720)
+    image arthurEnojado = im.Scale("ArthurEnojado.png", 1280, 720)
+    image arthurFeliz = im.Scale("ArthurFeliz.png", 1280, 720)
+    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 1280, 720)
+    image arthurPreocupado = im.Scale("ArthurPreocupado.png", 1280, 720)
+    image arthurReflexivo = im.Scale("ArthurReflexivo.png", 1280, 720)
+
+
 
     # Definicion de imagenes de fondos
     image bolaDeCristal = im.Scale("BolaCristal.jpg", 1920, 1080)
@@ -75,9 +82,9 @@ label start:
     "La Guerra de Excalibur"
     hide camelot
     
-    show CasaDia
-    #show merlinEnojado
-    #show arthurDistraido
+    show casaDia
+    show merlinPensativo at left
+    show arthurReflexivo at right
     m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
 
 

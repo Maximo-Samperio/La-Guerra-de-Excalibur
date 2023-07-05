@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 19: end of line expected.
-    scene bolaDeCristal = im.Scale("BolaCristal.jpg", 1920, 1080)
-                        ^
+File "game/script.rpy", line 87: expected 'simple_expression' not found.
+    xalign at left
+           ^
 
-Ren'Py Version: Ren'Py 8.0.3.22090809
-Sun Jul  2 15:48:10 2023
+Ren'Py Version: Ren'Py 8.1.1.23060707
+Wed Jul  5 19:36:01 2023
