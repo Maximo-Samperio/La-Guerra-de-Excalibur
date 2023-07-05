@@ -99,10 +99,9 @@ label start:
                 $ dedicacion += 1
                 #a "dedicacion actual es total a: [dedicacion]."
 
-                #show arthurEmocionado
+                show arthurEmocionado at right
                 a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
-                #hide arthurEmocionado
-                #show merlinFeliz
+                show merlinFeliz at left
                 m "¡Buena decisión!"
                 hide casaDia
                 show casaNoche
@@ -221,12 +220,16 @@ label start:
     return
 
 label training_slow:
+    hide merlinPensativo
+    show merlinEnojado at left
     m "¿Arthur? ¿Estas ahi?"
     show arthurDistraido
     a "Lo- Lo siento Merlin, ¿Que dijiste?"
     show merlinEnojado
     "*Merlin suspira de cansancio*"
     m "Te pregunte si te gustaria realizar una sesión extra de entrenamiento, ya que te vendría bien reforzar tu técnica con la espada."
+    hide arthurDistraido
+    hide merlinEnojado
     jump trainingChoiceLoop
 
 
