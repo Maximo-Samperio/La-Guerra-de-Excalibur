@@ -20,13 +20,13 @@ init:
 
 
     #Planos de Arthur
-    image arthurLlorando = im.Scale("ArthurLlorando.png", 1280, 720)
-    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 1280, 720)
-    image arthurEnojado = im.Scale("ArthurEnojado.png", 1280, 720)
-    image arthurFeliz = im.Scale("ArthurFeliz.png", 1280, 720)
-    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 1280, 720)
-    image arthurPreocupado = im.Scale("ArthurPreocupado.png", 1280, 720)
-    image arthurReflexivo = im.Scale("ArthurReflexivo.png", 1280, 720)
+    image arthurLlorando = im.Scale("ArthurLlorando.png", 820, 720)
+    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 820, 720)
+    image arthurEnojado = im.Scale("ArthurEnojado.png", 820, 720)
+    image arthurFeliz = im.Scale("ArthurFeliz.png", 820, 720)
+    image arthurEmocionado = im.Scale("ArthurEmocionado.png", 820, 720)
+    image arthurPreocupado = im.Scale("ArthurPreocupado.png", 820, 720)
+    image arthurPensativo = im.Scale("ArthurPensativo.png", 820, 720)
 
 
 
@@ -84,7 +84,7 @@ label start:
     
     show casaDia
     show merlinPensativo at left
-    show arthurReflexivo at right
+    show arthurPensativo at right
     m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
 
 
@@ -98,48 +98,90 @@ label start:
                 hide screen countdown       # Detiene el timer
                 $ dedicacion += 1
                 #a "dedicacion actual es total a: [dedicacion]."
-
+                hide merlinPensativo
                 show arthurEmocionado at right
-                a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
                 show merlinFeliz at left
+
+                a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
                 m "¡Buena decisión!"
                 hide casaDia
+                hide arthurEmocionado
+                hide merlinFeliz
                 show casaNoche
+                show arthurEmocionado at right
+                show merlinFeliz at left
                 "*Un rato después*"
                 m "¡Buen trabajo Arthur! Estoy orgulloso de ti. Es increíble todo lo que has avanzado en los meses que hemos estado juntos. No dejas de sorprenderme."
+                hide arthurEmocionado
+                show arthurFeliz at right
                 a "Gracias Merlín, estoy dando lo mejor de mí y es bueno ver que eso da frutos."
                 m "Pues claro que da frutos. Y me parece muy bien que des lo mejor de ti. Eso es lo que se espera de alguien que se convertirá en el guía de este reino. Serás un gran líder si te mantienes en este camino."
                 m "Por no hablar de toda la gente que cree en ti, Arthur. No hablo solo de La Mesa Redonda, sino de todo el pueblo. Todos cuentan contigo."
+                hide arthurFeliz
+                hide merlinFeliz
+                hide casaNoche
 
             "*Negarse a la sesion extra":
                 $ dedicacion -= 1
                 hide screen countdown       # Detiene el timer
-                
-                show arthur
+                hide merlinPensativo
+                show arthurPensativo at right
+                show merlinPreocupado at left
+
                 a "Eh, la verdad que no tengo muchas ganas, ya estuve entrenando un poco hoy y prefiero descansar ahora"
                 m "Que... decepcionante de tu parte, Arthur. Esperaba más dedicación de tu parte a la causa, más aun sabiendo a lo que nos enfrentamos."
                 m "La Orden está arrasando con todo a su paso y la gente cree en ti, Arthur. Sus esperanzas están depositadas en ti."
+                hide arthurPensativo
+                hide arthurPensativo
+                hide merlinPreocupado
+                hide casaDia
 
     "*Arthur agacha la cabeza un poco avergonzado y piensa para sí mismo...*"
+    show cuarto
+    show arthurPensativo
+
 
     a " Pero... ¿realmente quiero ser rey?"
     a "La responsabilidad es tan grande..."
+
+    hide cuarto
+    hide arthurPensativo
+
+    show genteCaminando
     a "Las personas del reino"
+    hide genteCaminando
+
+    show ejercito
     a "La Orden"
-    a "La Mesa Redonda"
+    hide ejercito
+
+    show ninojugando
     a "La vida"
+    hide ninojugando
+
+    show tumba
     a "La muerte"
+    hide tumba 
+
+    show cuarto
+    show arthurPensativo
     a "Todo depende de mi..."
     a "¿Realmente quiero ser rey?"
 
+
     menu:
         "Si. Quiero ser rey.":
+            hide arthurPensativo
+            show arthurFeliz
             a "Sí, tengo que ser rey. La gente me necesita y ahí estaré para protegerlos"
+            hide arthurFeliz
             $ dedicacion += 1
 
         "No. No quiero ser rey":
+            hide arthurPensativo
             jump huida
 
+    show arthurPensativo
     a "Sin embargo... ¿Qué tipo de rey quiero ser?"
     menu:
         "Un rey que se concentre en proteger a sus seres queridos":
@@ -156,26 +198,48 @@ label start:
                     
                 "Eso se debe a que es un cobarde":
                     $ dedicacion -= 1
-                    
+    hide arthurPensativo
+    hide cuarto
+
+    show casaDia
+    show arthurFeliz at right
     "A la madrugada del día siguiente, Arthur se levanta con renovadas energías y voluntad para entrenar. "
+
+    show merlinFeliz at left
     "Al levantarse y encontrarlo ya entrenando, Merlín felicita su perseverancia."
+    hide merlinFeliz
+    show merlinPensativo at left
+
 
     m "Arthur, la perseverancia es una de las cualidades de un líder. Me gustaría que hablemos un rato sobre eso, ¿qué te parece?"
+
     menu:
         "Reflexionar sobre las cualidades de un lider, asi seré mejor rey":
+            
             $ dedicacion += 1
             a "Claro, Merlín. Cuéntame sobre las cualidades de un líder"
+            hide merlinPensativo
+            show merlinFeliz at left
+
             m "Bien. Algunas de las cualidades distintivas de los lideres son: la proactividad, la habilidad para coordinar con otras personas, saber elegir prioridades, ser una persona integra y moral, entre otras."
             m "¿Y sabes que es lo sorprendente Arthur? Tu las posees todas y cada una de ellas."
+            hide merlinFeliz
+            show merlinPreocupado at left
             m "Y con esto en mente y sabiendo el orgullo que me generas, me gustaria que sepas algo."
+            hide arthurFeliz
+            show arthurPreocupado at right
             a "¿Qué Merlin?"
             m "Tu... no eres el elegido que creiamos que eras Arthur."
             "Se realiza una breve pausa."
+            hide arthurPreocupado
+            show arthurEnojado at right
             a "¿Qué?"
             m "Lo- Lo siento Arthur. Sin embargo... a pesar de no ser el elegido de la profecia has sido elegido en cierta forma."
             a "No entiendo muy bien a que te refieres."
             m "Arthur, has sido elegido por la mesa redonda, pero no por una profecía de tiempos antiguos, sino por hechos factuales."
             m "Eres una persona con dones inconmensurables."
+            hide merlinPreocupado
+            show merlinFeliz at left
             m "La gente levanta la cabeza cuando te ve, tienes un aura digna de un rey e igualmente queremos seguir llevando a cabo nuestro plan. Sin embatgo, quería ser honesto igualmente sobre la naturaleza de la profecía."
             "Arthur piensa para si mismo..."
             if dedicacion <= -1:
@@ -197,9 +261,14 @@ label start:
         
         "Que importa eso, yo solo quiero entrenar y hacerme fuerte":
             $ dedicacion -= 1
+            hide casaDia
+            hide merlinPensativo
+            hide arthurFeliz
             "Dada la aparente falta de interes de Arthur, Merlin decide dejarlo entrenando solo."
             "Un par de horas mas tarde, cuando el joven regresa a la cabaña, este logra escuchar a Merlin hablando por su bola de cristal, y oye algo que no debio de haber escuchado..."
+            show casaDia
             m "'El no es el elegido del cual hablaba la profecía'"
+            show arthurPreocupado at right
             "Arthur se detiene subitamente, en shock"
 
             # Esta ausencia de eleccion solo sucede si el jugador eligio todas y cada una de las elecciones deshonorables, es decir, es irredimible
@@ -223,13 +292,15 @@ label training_slow:
     hide merlinPensativo
     show merlinEnojado at left
     m "¿Arthur? ¿Estas ahi?"
-    show arthurDistraido
+    hide arthurPensativo
+    show arthurEmocionado at right
     a "Lo- Lo siento Merlin, ¿Que dijiste?"
-    show merlinEnojado
     "*Merlin suspira de cansancio*"
     m "Te pregunte si te gustaria realizar una sesión extra de entrenamiento, ya que te vendría bien reforzar tu técnica con la espada."
-    hide arthurDistraido
+    hide arthurEmocionado
     hide merlinEnojado
+    show merlinPensativo at left
+    show arthurPensativo at right
     jump trainingChoiceLoop
 
 
@@ -237,9 +308,13 @@ label training_slow:
 
 label angry:
     "Arthur estalla de furia contra Merlin ante este hecho"
+    hide merlinFeliz
+    show merlinPreocupado at left
+    show arthurEnojado at right
     a "¡Merlín! De todas las personas en el mundo... jamás pensé que ibas a ser tú, la misma persona que me rescato quien me iba a mentir de esta forma... Me siento traicionado."
+
     m "Perdón Arthur. Mis más sinceras disculpas. Pero... una cosa no quita la otra. No necesitas ninguna profecía antigua para convertirte en el rey y salvador de estas tierras ¡Ya eres un líder y te estás convirtiendo en el salvador! Que importa lo que una profecía diga."
-   
+    
     if dedicacion <= -1:
         menu:
             "Explotar de rabia e intentar asesinar a Merlín":
@@ -266,9 +341,15 @@ label angry:
 
 
 label good_ending:
+    hide arthurEnojado
+    show arthurPensativo at right
     a "Merlín... me decepciona saber que no soy 'El Elegido' de la profecía, no te voy a mentir. Creia que tenía un derecho divino."
     a "Sin embargo, ahora comprendo a lo que te referias. Es mas importante ganarse el derecho mediante las cualidades entrenadas por uno mismo a aquellas que se le achacan a uno mediante fuentes desconocidas."
     a "No necesito una profecía para desear ayudar a mi pueblo. Nunca la necesite."
+    hide merlinPreocupado
+    show merlinFeliz
+    hide arthurPensativo
+    show arthurFeliz at right
     a "¡Vamos a continuar el camino que empezamos, detener a La Orden y restaurar el reino en su gloria total!"
     a "¡Vamos a convertirnos en el escudo de las personas y traer justicia al reino!"
 
@@ -282,6 +363,9 @@ label good_ending:
 label bad_ending:
     "Arthur se deja llevar por la furia... una furia potenciada por el combustible más  potente de todos. La traición."
     "En un arrebato de fuerza y sorpresa para el mago, Arthur agarra la cabeza del mago y la estampa contra la pared, pulverizándole  el miembro superior y dejándolo  sin vida"
+    hide merlinPreocupado
+    hide arthurEnojado
+    show arthurEnojado
     a "Aquí le declaro la guerra a La Mesa Redonda. Una organización fundada por una rata traidora como esta no puede ser redimida"
     a "Al parecer La Orden tenía razón."
     "Y así, Arthur decide emprender un nuevo camino. Un camino lleno de dolor y sufrimiento, pero tal es el odio y el resentimiento que le genera la traición  de la mesa redonda que es capaz de apaciguar todo ese dolor para ver su fin realizado..."
@@ -293,10 +377,14 @@ label bad_ending:
 
 
 label huida:
+    hide arthurPreocupado
+    show arthurEnojado
     a "No. No puedo ser rey. No estoy capacitado, nunca lo estaré. No soy ningún  elegido de nada."
     "Sumido completamente en la ansiedad, la presión  y la desesperación, Arthur decide escapar esa misma noche."
     "Dejando atrás  toda su vida, con la esperanza de encontrar una... más  simple."
     "Una vida sin tanta preocupación"
+    hide casaDia
+    show desierto
     "Un par de horas despues, Arthur llega a 'La frontera del mundo', la division de los reinos"
     "Sin embargo, al estar a punto de cruzar la frontera, unas siluetas sigilosas se asoman  de las esquinas y encierran a Arthur." 
     "La Orden lo había  encontrado"
@@ -306,6 +394,8 @@ label huida:
             "Pero claro... Arthur abandono de forma temprana su entrenamiento. No tiene defensa ni escapatoria"
 
 
+    hide arthurEnojado
+    show arthurLlorando
     a "*Comienza a temblar de miedo y ansiedad.*"
     a "No puedo volver otra vez con La Orden"
     "Y todos los recuerdos dolorosos, marcados en su alma como una cicatriz, empezaron a fluir como un rio"
@@ -313,6 +403,8 @@ label huida:
     "El cansancio fisico"
     "La tortura mental"
     "Arthur poso su mano sobre las cicatrices en toda su espalda causadas por los latigazos, sintiendo su relieve irregular y se decidió"
+    hide arthurLlorando
+    show arthurEnojado
     a "No puedo volver a ese infierno"
     a "No puedo."
 
@@ -322,6 +414,7 @@ label huida:
 
     
     "Y asi, Arthur en un fluido movimiento se corta las venas. Una solución mejor que volver al sufrimiento generado por La Orden, mejor que ser usado como un arma contra las personas."
+    hide arthurEnojado
     "Fin."
     #End
     return
