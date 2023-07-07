@@ -1,62 +1,83 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While processing the color property of anonymous style:
-  File "game/script.rpy", line 259, in script
-    m "Lo- Lo siento Arthur. Sin embargo... a pesar de no ser el elegido de la profecia has sido elegido en cierta forma."
-Exception: Color string '#8334eb' must be 3, 4, 6, or 8 hex digits long.
+While loading <renpy.display.im.Scale object at 0x0000000004f84af0>:
+  File "game/script.rpy", line 120, in script
+    a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
+  File "renpy/common/000window.rpy", line 114, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 69, in _window_show
+    renpy.with_statement(trans)
+OSError: Couldn't find file 'MerlnFeliz.png'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 259, in script
-    m "Lo- Lo siento Arthur. Sin embargo... a pesar de no ser el elegido de la profecia has sido elegido en cierta forma."
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\ast.py", line 930, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\exports.py", line 1473, in say
-    who(what, *args, **kwargs)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\character.py", line 1352, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\character.py", line 1003, in do_display
-    display_say(who,
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\character.py", line 693, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\ui.py", line 299, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "game/script.rpy", line 120, in script
+    a "Está bien, no veo por qué no. Un poco más de práctica no le hace mal a nadie."
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\ast.py", line 898, in execute
+    statement_name(stmt_name)
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\ast.py", line 47, in statement_name
+    i(name)
+  File "renpy/common/000window.rpy", line 114, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 69, in _window_show
+    renpy.with_statement(trans)
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\exports.py", line 1757, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 2975, in do_with
+    return self.interact(trans_pause=True,
   File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 3579, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 4052, in interact_core
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\screen.py", line 481, in visit_all
-    self.child.visit_all(callback, seen=None)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 681, in visit_all
-    d.visit_all(callback, seen)
-  [Previous line repeated 1 more time]
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 683, in visit_all
-    callback(self)
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 4052, in <lambda>
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\text\text.py", line 1792, in per_interact
-    if self.style.slow_abortable:
-  File "gen3-static/styleclass.pxi", line 533, in renpy.styledata.styleclass.Style.slow_abortable.__get__
-  File "style.pyx", line 493, in renpy.style.StyleCore._get
-  File "style.pyx", line 710, in renpy.style.build_style
-  File "style.pyx", line 707, in renpy.style.build_style
-  File "gen3-static/style_functions.pyx", line 323, in style_functions.color_property
-  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\color.py", line 167, in __new__
-    raise Exception("Color string {!r} must be 3, 4, 6, or 8 hex digits long.".format(c))
-Exception: Color string '#8334eb' must be 3, 4, 6, or 8 hex digits long.
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 4172, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\core.py", line 2779, in draw_screen
+    surftree = renpy.display.render.render_screen(
+  File "render.pyx", line 492, in renpy.display.render.render_screen
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\layout.py", line 886, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\transition.py", line 378, in render
+    bottom = render(self.old_widget, width, height, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\layout.py", line 886, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\layout.py", line 886, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\transform.py", line 909, in render
+    return RenderTransform(self).render(width, height, st, at)
+  File "accelerator.pyx", line 979, in renpy.display.accelerator.RenderTransform.render
+  File "accelerator.pyx", line 404, in renpy.display.accelerator.RenderTransform.render_child
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\image.py", line 513, in render
+    return wrap_render(self.target, width, height, st, at)
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\image.py", line 316, in wrap_render
+    rend = render(child, w, h, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\im.py", line 676, in render
+    return cache.get(self, render=True)
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\im.py", line 330, in get
+    surf = image.load()
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\im.py", line 978, in load
+    child = cache.get(self.image)
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\im.py", line 330, in get
+    surf = image.load()
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\im.py", line 803, in load
+    raise e
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\display\im.py", line 757, in load
+    filelike = renpy.loader.load(self.filename, directory="images")
+  File "C:\Users\maxim\Downloads\renpy-8.1.1-sdk\renpy\loader.py", line 833, in load
+    raise IOError("Couldn't find file '%s'." % name)
+OSError: Couldn't find file 'MerlnFeliz.png'.
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.1.1.23060707
 La Guerra de Excalibur 1.0
-Fri Jul  7 10:55:59 2023
+Fri Jul  7 13:19:42 2023
