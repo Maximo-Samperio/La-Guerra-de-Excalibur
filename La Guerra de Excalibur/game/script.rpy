@@ -71,20 +71,35 @@ label start:
     # hide imageName
 
     show lunaRoja
+    play music "MusicaEpica.mp3" volume 0.1
     "La isla de Avalon (la isla de las hadas)"
-    "El elegido que fue prometido, nacido bajo la luna roja, despertara."
+
+    play sound "LaProfecia1.mp3" volume 1.0
+    "El elegido que fue prometido, nacido bajo la luna roja, despertara." 
+
+    play sound "LaProfecia2.mp3" volume 1.0
+    queue sound "BebeLlorando.mp3" volume 0.3
     "Concebido por el poder de la magia e hijo de un rey, él será..."
+
+    play sound "LaProfecia3.mp3" volume 1.0
     "Cuando el equilibrio se tambalee, el pasado y el futuro deberán fluir y combinarse."
+
+    play sound "LaProfecia4.mp3" volume 1.0
     "Un elegido surgirá, cuando le ponga fin a Excalibur, y a través de él, el equilibrio final de las energías se restablecerá"
+
     hide lunaRoja
 
     show camelot
     "La Guerra de Excalibur"
     hide camelot
+    stop music fadeout 1.0
     
     show casaDia
     show merlinPensativo at left
     show arthurPensativo at right
+    play music "RuidoDePajaros.mp3" volume 0.2
+    play sound "EspadasChocando.mp3" volume 0.4
+
     m "Arthur, ¿qué te parece si realizamos una sesión extra de entrenamiento? Te vendría bien reforzar tu técnica con la espada."
 
 
@@ -107,6 +122,7 @@ label start:
                 hide casaDia
                 hide arthurEmocionado
                 hide merlinFeliz
+                stop sound
                 show casaNoche
                 show arthurEmocionado at right
                 show merlinFeliz at left
@@ -120,11 +136,13 @@ label start:
                 hide arthurFeliz
                 hide merlinFeliz
                 hide casaNoche
+                stop music fadeout 1.0
 
             "*Negarse a la sesion extra":
                 $ dedicacion -= 1
                 hide screen countdown       # Detiene el timer
                 hide merlinPensativo
+                stop sound
                 show arthurPensativo at right
                 show merlinPreocupado at left
 
@@ -135,9 +153,12 @@ label start:
                 hide arthurPensativo
                 hide merlinPreocupado
                 hide casaDia
+                stop music fadeout 1.0
 
     "*Arthur agacha la cabeza un poco avergonzado y piensa para sí mismo...*"
     show cuarto
+    play music "SonidoDeGranja.mp3" volume 0.1
+
     show arthurPensativo
 
 
@@ -190,7 +211,8 @@ label start:
         
         "Un rey que se concentre en destruir a sus enemigos":
             $ dedicacion -= 1
-            a "Si... La Orden debe ser aniquilada. He visto lo que hacen. Asesinan hombres, mujeres y niños por igual. Queman aldeas, encerrando a los habitantes dentro de sus casas para oír sus gritos mientras se queman vivos. Son unos monstruos y serán tratados acorde. Merlín me ha advertido sobre estos pensamientos oscuros, pero es la cruda realidad."
+            a "Si... La Orden debe ser aniquilada. He visto lo que hacen. Asesinan hombres, mujeres y niños por igual. Queman aldeas, encerrando a los habitantes dentro de sus casas para oír sus gritos mientras se queman vivos."
+            a "Son unos monstruos y serán tratados acorde. Merlín me ha advertido sobre estos pensamientos oscuros, pero es la cruda realidad."
             a "Se que Merlin no piensa igual."
             menu:
                 "Eso se debe a que es misericordioso":
@@ -385,17 +407,20 @@ label huida:
     "Una vida sin tanta preocupación"
     hide casaDia
     show desierto
+    play music "SonidoDeAguila.mp3" volume 0.3
+    play sound "SonidoDeCaballo.mp3" volume 0.5
+
     "Un par de horas despues, Arthur llega a 'La frontera del mundo', la division de los reinos"
     "Sin embargo, al estar a punto de cruzar la frontera, unas siluetas sigilosas se asoman  de las esquinas y encierran a Arthur." 
     "La Orden lo había  encontrado"
+
+    hide arthurEnojado
+    show arthurLlorando
 
     menu:
         "Tengo que defenderme":
             "Pero claro... Arthur abandono de forma temprana su entrenamiento. No tiene defensa ni escapatoria"
 
-
-    hide arthurEnojado
-    show arthurLlorando
     a "*Comienza a temblar de miedo y ansiedad.*"
     a "No puedo volver otra vez con La Orden"
     "Y todos los recuerdos dolorosos, marcados en su alma como una cicatriz, empezaron a fluir como un rio"
